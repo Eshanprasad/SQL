@@ -1,0 +1,87 @@
+mysql> create database University;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| university         |
++--------------------+
+5 rows in set (0.01 sec)
+
+
+
+mysql> create table Student(id int, name varchar(100), age int);
+ERROR 1046 (3D000): No database selected
+
+
+mysql> use university;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+mysql> create table Student(id int, name varchar(100), age int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| student              |
++----------------------+
+1 row in set (0.00 sec)
+
+
+
+mysql> describe student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| age   | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+
+mysql> insert into student values(205, "eshan", 20);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+-------+------+
+| id   | name  | age  |
++------+-------+------+
+|  205 | eshan |   20 |
++------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student values(206, "aishwarya");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Student(id, name) values(206, "aishwarya");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+-----------+------+
+| id   | name      | age  |
++------+-----------+------+
+|  205 | eshan     |   20 |
+|  206 | aishwarya | NULL |
++------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student(name, id) values("vamshi", 207);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+-----------+------+
+| id   | name      | age  |
++------+-----------+------+
+|  205 | eshan     |   20 |
+|  206 | aishwarya | NULL |
+|  207 | vamshi    | NULL |
++------+-----------+------+
+3 rows in set (0.00 sec)
