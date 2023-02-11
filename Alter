@@ -1,0 +1,166 @@
+mysql> /* alter is used to modify existing table
+   /*>
+   /*> 1. CAN ADD ONE COLUMN TO TABLE:*/
+   
+mysql> select * from student;
++------+--------+------+
+| ID   | name   | age  |
++------+--------+------+
+|  101 | eshan  |   20 |
+|  102 | prasad |   21 |
++------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add(address varchar(100));
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+------+---------+
+| ID   | name   | age  | address |
++------+--------+------+---------+
+|  101 | eshan  |   20 | NULL    |
+|  102 | prasad |   21 | NULL    |
++------+--------+------+---------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+mysql> /* 2. CAN ADD MULTIPLE COLUMNS */
+mysql> select * from student;
++------+--------+------+---------+
+| ID   | name   | age  | address |
++------+--------+------+---------+
+|  101 | eshan  |   20 | NULL    |
+|  102 | prasad |   21 | NULL    |
++------+--------+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add(contact int, email varchar(100));
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+------+---------+---------+-------+
+| ID   | name   | age  | address | contact | email |
++------+--------+------+---------+---------+-------+
+|  101 | eshan  |   20 | NULL    |    NULL | NULL  |
+|  102 | prasad |   21 | NULL    |    NULL | NULL  |
++------+--------+------+---------+---------+-------+
+
+
+
+
+mysql> /* 3. CAN ADD COLUMN WITH DEFAULT VALUES*/
+mysql> alter table student add(test int default '100');
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+------+---------+---------+-------+------+
+| ID   | name   | age  | address | contact | email | test |
++------+--------+------+---------+---------+-------+------+
+|  101 | eshan  |   20 | NULL    |    NULL | NULL  |  100 |
+|  102 | prasad |   21 | NULL    |    NULL | NULL  |  100 |
++------+--------+------+---------+---------+-------+------+
+
+
+
+
+mysql> /* 4. MODIFY EXISTING COLUMN*/
+mysql> describe student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| ID      | int          | YES  |     | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
+| contact | int          | YES  |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
+| test    | int          | YES  |     | 100     |       |
++---------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table student modify column contact varchar(100);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| ID      | int          | YES  |     | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
+| contact | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
+| test    | int          | YES  |     | 100     |       |
++---------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+
+
+mysql> /* 5. CAN RENAME EXISTING COLUMN*/
+mysql> /* in this query, we should again mention the datatype of the column that we are renaming */
+
+mysql> describe student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| ID      | int          | YES  |     | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
+| contact | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(100) | YES  |     | NULL    |       |
+| test    | int          | YES  |     | 100     |       |
++---------+--------------+------+-----+---------+-------+
+
+mysql> alter table student change address location varchar(100);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| ID       | int          | YES  |     | NULL    |       |
+| name     | varchar(100) | YES  |     | NULL    |       |
+| age      | int          | YES  |     | NULL    |       |
+| location | varchar(100) | YES  |     | NULL    |       |
+| contact  | varchar(100) | YES  |     | NULL    |       |
+| email    | varchar(100) | YES  |     | NULL    |       |
+| test     | int          | YES  |     | 100     |       |
++----------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+
+
+mysql> /* 6. CAN DROP A PARTICULAR COLUMN */
+mysql> select * from student;
++------+--------+------+----------+---------+-------+------+
+| ID   | name   | age  | location | contact | email | test |
++------+--------+------+----------+---------+-------+------+
+|  101 | eshan  |   20 | NULL     | NULL    | NULL  |  100 |
+|  102 | prasad |   21 | NULL     | NULL    | NULL  |  100 |
++------+--------+------+----------+---------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student drop test;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+------+----------+---------+-------+
+| ID   | name   | age  | location | contact | email |
++------+--------+------+----------+---------+-------+
+|  101 | eshan  |   20 | NULL     | NULL    | NULL  |
+|  102 | prasad |   21 | NULL     | NULL    | NULL  |
++------+--------+------+----------+---------+-------+
+2 rows in set (0.00 sec)
