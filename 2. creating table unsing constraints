@@ -51,6 +51,22 @@ mysql> select * from faculty;
 3 rows in set (0.00 sec)
 
 
+mysql>  insert into faculty values(104, "krishna", 35);
+ERROR 1062 (23000): Duplicate entry '35' for key 'faculty.age'
+
+mysql> insert into faculty values(104, "krishna", 36);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from faculty;
++-----+---------+------+
+| id  | name    | age  |
++-----+---------+------+
+| 101 | chatru  |   35 |
+| 102 | Rakesh  | NULL |
+| 103 | sai ram | NULL |
+| 104 | krishna |   36 |
++-----+---------+------+
+4 rows in set (0.00 sec)
 
 
 mysql>  insert into faculty(id, age) values(104, 40);
