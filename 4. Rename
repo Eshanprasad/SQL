@@ -1,0 +1,25 @@
+mysql> rename table student to std;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from std;
++------+-----------+------+
+| id   | name      | age  |
++------+-----------+------+
+|  205 | eshan     |   20 |
+|  206 | aishwarya | NULL |
+|  207 | vamshi    | NULL |
++------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> rename table faculty to fac, faculty_new to fac_new;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| fac                  |
+| fac_new              |
+| std                  |
++----------------------+
+3 rows in set (0.00 sec)
