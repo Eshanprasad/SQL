@@ -1,0 +1,59 @@
+mysql> create table Faculty(id int primary key, name varchar(100) not NULL, age int unique);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe faculty;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | NO   | PRI | NULL    |       |
+| name  | varchar(100) | NO   |     | NULL    |       |
+| age   | int          | YES  | UNI | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> insert into Faculty values(101, "chatru", 35);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from faculty;
++-----+--------+------+
+| id  | name   | age  |
++-----+--------+------+
+| 101 | chatru |   35 |
++-----+--------+------+
+1 row in set (0.00 sec)
+
+
+
+mysql> insert into faculty(id, name) values(102, "Rakesh");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from faculty;
++-----+--------+------+
+| id  | name   | age  |
++-----+--------+------+
+| 101 | chatru |   35 |
+| 102 | Rakesh | NULL |
++-----+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into faculty(id, name) values(103, "sai ram");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from faculty;
++-----+---------+------+
+| id  | name    | age  |
++-----+---------+------+
+| 101 | chatru  |   35 |
+| 102 | Rakesh  | NULL |
+| 103 | sai ram | NULL |
++-----+---------+------+
+3 rows in set (0.00 sec)
+
+
+
+
+mysql>  insert into faculty(id, age) values(104, 40);
+ERROR 1364 (HY000): Field 'name' doesn't have a default value
+mysql> insert into faculty(name, age) values("eshan", 20);
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
