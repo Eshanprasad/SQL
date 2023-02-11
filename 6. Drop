@@ -1,0 +1,25 @@
+mysql> select * from fac_new;
++-----+--------+------+
+| id  | name   | age  |
++-----+--------+------+
+| 101 | Rakesh |   40 |
+| 102 | xyz    |   41 |
++-----+--------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> drop table fac_new;
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+mysql> select * from fac_new;
+ERROR 1146 (42S02): Table 'university.fac_new' doesn't exist
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| fac                  |
+| std                  |
++----------------------+
+2 rows in set (0.00 sec)
