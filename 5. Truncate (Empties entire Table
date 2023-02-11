@@ -1,0 +1,17 @@
+mysql> select * from std;
++------+-----------+------+
+| id   | name      | age  |
++------+-----------+------+
+|  205 | eshan     |   20 |
+|  206 | aishwarya | NULL |
+|  207 | vamshi    | NULL |
++------+-----------+------+
+3 rows in set (0.00 sec)
+
+
+mysql> truncate std;
+Query OK, 0 rows affected (0.02 sec)
+
+
+mysql> select * from std;
+Empty set (0.00 sec)
